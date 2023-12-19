@@ -1,4 +1,4 @@
-name: playwright_test
+name: playwright
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
       with:
         node-version: '14'
         cache: 'npm'
-    - run: npm playwright_test
+    - run: npm playwright
     - run: npx playwright install
     - run: npm test
   
