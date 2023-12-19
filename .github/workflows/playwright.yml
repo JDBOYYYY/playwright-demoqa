@@ -1,10 +1,5 @@
-name: Playwright Test
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+name: Playwright Tests
+on: [push, workflow_dispatch]
 
 jobs:
   build:
@@ -18,6 +13,7 @@ jobs:
       with:
         node-version: '14'
         cache: 'npm'
+    - run: npm ci
     - run: npx playwright install
     - run: npm test
   
