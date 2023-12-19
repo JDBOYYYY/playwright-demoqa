@@ -13,10 +13,12 @@ jobs:
       with:
         node-version: '14'
         cache: 'npm'
-    - run: npm install
-    - run: npx playwright install-deps
-    - run: npm test
-  
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Run Playwright tests
+      run: npx playwright test
     - uses: actions/upload-artifact@master
       with:
         name: allure-results
