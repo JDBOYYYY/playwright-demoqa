@@ -4,7 +4,7 @@ import { allure } from 'allure-playwright'
 test.describe('Text Box Page Tests', () => {
 
   test('Fill form with only Name and Email', async ({ textBoxPage }) => {
-    allure.suite('Basic Functionality')
+    allure.suite('Text Box Page')
     allure.subSuite('Partial Form Submission')
     allure.description('Verifies form functionality with only Name and Email fields filled.')
     allure.severity('Normal')
@@ -22,7 +22,7 @@ test.describe('Text Box Page Tests', () => {
   })
 
   test('Fill form with all fields', async ({ textBoxPage }) => {
-    allure.suite('Basic Functionality')
+    allure.suite('Text Box Page')
     allure.subSuite('Complete Form Submission')
     allure.description('Ensures form functionality works with all fields filled.')
     allure.severity('Normal')
@@ -44,7 +44,7 @@ test.describe('Text Box Page Tests', () => {
   })
 
   test('Fill form with only Current Address', async ({ textBoxPage }) => {
-    allure.suite('Basic Functionality')
+    allure.suite('Text Box Page')
     allure.subSuite('Single Field Form Submission')
     allure.description('Checks form behavior when only the Current Address is filled.')
     allure.severity('Normal')
@@ -60,7 +60,7 @@ test.describe('Text Box Page Tests', () => {
   })
 
   test('Submit empty form', async ({ textBoxPage }) => {
-    allure.suite('Edge Cases')
+    allure.suite('Text Box Page')
     allure.subSuite('Empty Form Submission')
     allure.description('Tests the behavior of submitting an empty form.')
     allure.severity('Minor')
@@ -72,7 +72,7 @@ test.describe('Text Box Page Tests', () => {
   })
 
   test('Test form with very long input values', async ({ textBoxPage }) => {
-    allure.suite('Edge Cases')
+    allure.suite('Text Box Page')
     allure.subSuite('Long Input Values')
     // eslint-disable-next-line max-len
     allure.description('Tests form behavior with extremely long input values. Identifies issues with data handling and UI.')
@@ -91,7 +91,7 @@ test.describe('Text Box Page Tests', () => {
   })
 
   test('Test form with special characters', async ({ textBoxPage }) => {
-    allure.suite('Edge Cases')
+    allure.suite('Text Box Page')
     allure.subSuite('Special Characters')
     allure.description('Verifies form functionality with special characters in input fields.')
     allure.severity('Normal')
@@ -109,7 +109,7 @@ test.describe('Text Box Page Tests', () => {
   })
 
   test('Test form with SQL injection string', async ({ textBoxPage }) => {
-    allure.suite('Security')
+    allure.suite('Text Box Page')
     allure.subSuite('SQL Injection')
     allure.description('Checks form resilience against SQL injection attempts.')
     allure.severity('Critical')
@@ -127,7 +127,7 @@ test.describe('Text Box Page Tests', () => {
   })
 
   test('Test form with HTML/JavaScript code', async ({ textBoxPage }) => {
-    allure.suite('Security')
+    allure.suite('Text Box Page')
     allure.subSuite('HTML/JavaScript Injection')
     allure.description('Evaluates form security against HTML/JavaScript code injection.')
     allure.severity('Critical')
