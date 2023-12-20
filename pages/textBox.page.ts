@@ -44,7 +44,7 @@ export class TextBoxPage {
   }
 
   async visit () {
-    await this.page.goto(this.url)
+    await this.page.goto(this.url, { timeout:60000 } )
   }
   async fillForm (formData: FormData) {
     if (formData.name) {
@@ -64,25 +64,16 @@ export class TextBoxPage {
     await this.locators.buttons.submit.click()
   }
   async checkOutput (formData: FormData) {
-    if (formData.name) {
-      await expect.soft(
-        this.locators.elements.outputBox.locator('//p[@id="name"]')
-      ).toContainText(formData.name)
-    }
-    if (formData.email) {
-      await expect.soft(
-        this.locators.elements.outputBox.locator('//p[@id="email"]')
-      ).toContainText(formData.email)
-    }
-    if (formData.currentAddress) {
-      await expect.soft(
-        this.locators.elements.outputBox.locator('//p[@id="currentAddress"]')
-      ).toContainText(formData.currentAddress)
-    }
-    if (formData.permanentAddress) {
-      await expect.soft(
-        this.locators.elements.outputBox.locator('//p[@id="permanentAddress"]')
-      ).toContainText(formData.permanentAddress)
+    const fields: (keyof FormData)[] = ['name', 'email', 'currentAddress', 'permanentAddress']
+    for (const field of fields) {
+      const fieldValue = formData[field]
+      const locator = this.locators.elements.outputBox.locator(`//p[@id="${field}"]`)
+
+      if (fieldValue !== undefined) {
+        await expect.soft(locator).toContainText(fieldValue)
+      } else {
+        await expect.soft(locator).not.toBeVisible()
+      }
     }
   }
 }
