@@ -10,6 +10,7 @@ test.describe('Text Box Page Tests', () => {
     allure.severity('Normal')
 
     await textBoxPage.visit()
+    await textBoxPage.consentCookies()
     await textBoxPage.fillForm({
       name: 'John Doe',
       email: 'john@example.com'
@@ -28,6 +29,7 @@ test.describe('Text Box Page Tests', () => {
     allure.severity('Normal')
 
     await textBoxPage.visit()
+    await textBoxPage.consentCookies()
     await textBoxPage.fillForm({
       name: 'John Doe',
       email: 'john@example.com',
@@ -50,6 +52,7 @@ test.describe('Text Box Page Tests', () => {
     allure.severity('Normal')
 
     await textBoxPage.visit()
+    await textBoxPage.consentCookies()
     await textBoxPage.fillForm({
       currentAddress: '123 Main St'
     })
@@ -66,6 +69,7 @@ test.describe('Text Box Page Tests', () => {
     allure.severity('Minor')
 
     await textBoxPage.visit()
+    await textBoxPage.consentCookies()
     await textBoxPage.fillForm({})
     await textBoxPage.submitForm()
     await textBoxPage.checkOutput({})
@@ -80,6 +84,7 @@ test.describe('Text Box Page Tests', () => {
 
     const longString = 'A'.repeat(10000) // 10,000 characters long
     await textBoxPage.visit()
+    await textBoxPage.consentCookies()
     await textBoxPage.fillForm({
       name: longString,
       email: `longemail${longString}@example.com`,
@@ -98,6 +103,7 @@ test.describe('Text Box Page Tests', () => {
 
     const specialChars = '!@#$%^&*()_+{}:"<>?[];\',./`~'
     await textBoxPage.visit()
+    await textBoxPage.consentCookies()
     await textBoxPage.fillForm({
       name: `John Doe ${specialChars}`,
       email: `john${specialChars}@example.com`,
@@ -116,6 +122,7 @@ test.describe('Text Box Page Tests', () => {
 
     const sqlInjection = '\'; DROP TABLE users; --'
     await textBoxPage.visit()
+    await textBoxPage.consentCookies()
     await textBoxPage.fillForm({
       name: `John Doe ${sqlInjection}`,
       email: `john${sqlInjection}@example.com`,
@@ -134,6 +141,7 @@ test.describe('Text Box Page Tests', () => {
 
     const htmlJsCode = '<script>alert(\'XSS\');</script>'
     await textBoxPage.visit()
+    await textBoxPage.consentCookies()
     await textBoxPage.fillForm({
       name: `John Doe ${htmlJsCode}`,
       email: 'john@example.com',

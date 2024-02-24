@@ -1,4 +1,5 @@
 import { Locator, Page, expect } from '@playwright/test'
+import { BasePage } from './base.page';
 
 interface FormData {
   name?: string;
@@ -7,46 +8,45 @@ interface FormData {
   permanentAddress?: string;
 }
 
-export class TextBoxPage {
-  readonly page: Page
+export class TextBoxPage extends BasePage {
   readonly url: string = '/text-box'
   readonly locators: {
-    inputs:{
+    inputs: {
       name: Locator
       email: Locator
       currentAddress: Locator
       permanentAddress: Locator
     }
-    buttons:{
-      submit:Locator
+    buttons: {
+      submit: Locator
     }
-    elements:{
-      outputBox:Locator
+    elements: {
+      outputBox: Locator
     }
   }
 
-  public constructor (page: Page) {
-    this.page = page
+  public constructor(page: Page) {
+    super(page);
     this.locators = {
-      inputs:{
+      inputs: {
         name: page.getByPlaceholder('Full Name'),
         email: page.getByPlaceholder('name@example.com'),
         currentAddress: page.getByPlaceholder('Current Address'),
         permanentAddress: page.locator('#permanentAddress'),
       },
-      buttons:{
+      buttons: {
         submit: page.getByRole('button', { name: 'Submit' })
       },
-      elements:{
+      elements: {
         outputBox: page.locator('//div[@id="output"]')
       }
     }
   }
 
-  async visit () {
-    await this.page.goto(this.url, { timeout:60000 } )
+  async visit() {
+    await this.page.goto(this.url, { timeout: 60000 })
   }
-  async fillForm (formData: FormData) {
+  async fillForm(formData: FormData) {
     if (formData.name) {
       await this.locators.inputs.name.fill(formData.name)
     }
@@ -60,10 +60,10 @@ export class TextBoxPage {
       await this.locators.inputs.permanentAddress.fill(formData.permanentAddress)
     }
   }
-  async submitForm () {
+  async submitForm() {
     await this.locators.buttons.submit.click()
   }
-  async checkOutput (formData: FormData) {
+  async checkOutput(formData: FormData) {
     const fields: (keyof FormData)[] = ['name', 'email', 'currentAddress', 'permanentAddress']
     for (const field of fields) {
       const fieldValue = formData[field]
